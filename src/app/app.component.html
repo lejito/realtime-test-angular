@@ -9,95 +9,31 @@
     <div
       class="size-full max-h-[80%] px-1 py-2 border border-slate-300 rounded-2xl"
     >
-      <ul class="size-full overflow-y-auto">
+      <ul #chatContainer id="chat-container" class="size-full overflow-y-auto" [scrollTop]="scrollToBottom()">
+        @for (message of messages; track message._id) {
         <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
+          <span class="pr-2 font-semibold text-orange-500">
+            [{{ message.date | date : "HH:mm" }}]
+          </span>
+          <p class="text-slate-300">{{ message.text }}</p>
         </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          </p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:48]</span>
-          <p class="text-slate-300">Hello</p>
-        </li>
-        <li class="flex flex-row px-4 py-1">
-          <span class="pr-2 font-semibold text-orange-500">[00:52]</span>
-          <p class="text-slate-300">How are you?</p>
-        </li>
+        }
       </ul>
     </div>
 
-    <div class="mt-5 flex flex-row justify-between">
+    <form class="mt-5 flex flex-row justify-between" (ngSubmit)="sendMessage()">
       <input
         class="w-full rounded-md px-2 py-1 outline-none"
         type="text"
+        name="message"
         placeholder="Type a message..."
+        [(ngModel)]="message"
       />
       <button
         class="ml-2 px-2 py-1 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-md ease-in-out duration-300 transition-all"
       >
         Send
       </button>
-    </div>
+    </form>
   </div>
 </main>
