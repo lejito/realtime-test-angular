@@ -8,11 +8,11 @@ import { io } from 'socket.io-client';
   providedIn: 'root',
 })
 export class ChatService {
-  private _serverUri = 'http://localhost:3000';
+  private _serverUri = 'https://realtime-test-express.onrender.com';
   private _socket;
 
   constructor() {
-    this._socket = io("ws://localhost:3000");
+    this._socket = io("wss://realtime-test-express.onrender.com");
   }
 
   public async loadMessages(): Promise<IMessage[]> {
